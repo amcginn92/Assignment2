@@ -1,5 +1,6 @@
 package com.example.assignment2
 
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,17 +15,20 @@ class MainActivity : AppCompatActivity() {
         val textView = findViewById<TextView>(R.id.textView)
         val textName = findViewById<EditText>(R.id.textName)
         val textEmail = findViewById<EditText>(R.id.textEmail)
-        val spinner = findViewById<Spinner>(R.id.spinner)
         val textPw = findViewById<EditText>(R.id.textPw)
         val textPwConfirm = findViewById<EditText>(R.id.textPwConfirm)
+
+
+        val spinner = findViewById<Spinner>(R.id.spinner)
         val arr = arrayOf("-Select Program-", "Information Science", "Computer Science", "Math & CS", "Data Science", "Other")
+
         val saveButton = findViewById<Button>(R.id.button)
 
         saveButton.setOnClickListener{
 //            Toast.makeText(this,"PW: ${textPw.text.toString()}, PWConf: ${textPwConfirm.text.toString()}",Toast.LENGTH_SHORT).show()
 
             if(textName.text.isBlank()){
-//                Toast.makeText(this,"You done goofed",Toast.LENGTH_SHORT).show()  //maybe use this for select program
+
                 textName.setError("Please enter a name")
             }
             if(textEmail.text.isBlank()){
@@ -35,6 +39,13 @@ class MainActivity : AppCompatActivity() {
             }
             if(!(textPwConfirm.text.toString().equals(textPw.text.toString())) ){
                 textPwConfirm.setError("Make sure passwords match")
+            }
+
+            if(spinner.selectedItem.toString().equals("-Select Program-")){
+                Toast.makeText(this,"You done goofed",Toast.LENGTH_SHORT).show()
+                val errorText = spinner.selectedView as TextView
+                errorText.error = "Select Program"
+
             }
 
 
